@@ -11,7 +11,7 @@ function Text(props) {
     const upper = () => {
         const alertcap =() => {
              if (text === text.toUpperCase()) {
-                props.showAlert("Warinig" , "The word is already capitalized.")
+                props.showAlert("Warning" , "The word is already capitalized.")
             } else {
                 props.showAlert("success" , "All Letters are Capital Now")
             }
@@ -25,7 +25,7 @@ function Text(props) {
         }else if (text === ""){
             setnewt(newt.toUpperCase())
             settextp(2)
-            props.showAlert("Warinig" , "Input is Empty")
+            props.showAlert("Warning" , "Input is Empty")
 
         }
     }
@@ -33,7 +33,7 @@ function Text(props) {
     const low = () => {
         const alertlow =() => {
              if (text === text.toLowerCase()) {
-                props.showAlert("Warinig" , "The word is already capitalized.")
+                props.showAlert("Warning" , "The word is already capitalized.")
             } else {
                 props.showAlert("success" , "All Letters are Capital Now")
             }
@@ -46,7 +46,7 @@ function Text(props) {
         }else if (text === ""){
             setnewt(newt.toLowerCase())
             settextp(2)
-            props.showAlert("Warinig" , "Input is Empty")
+            props.showAlert("Warning" , "Input is Empty")
             //alertlow()
         }
     }
@@ -93,10 +93,6 @@ function Text(props) {
 const sorted = countCharacters(text).sort((a, b) => {
     let numA = parseInt(a.match(a.slice(2,(a.length)))[0])
     let numB = parseInt(b.match(b.slice(2,(b.length)))[0])
-    
-    //console.log( parseInt(a.match(a.slice(2,(a.length-1)))[0]))
-    
-    
     return numB - numA
 })
 
@@ -135,144 +131,158 @@ const deletspace = () => {
         props.showAlert("success" , `Delet Extra spaces: ${calculatedExtraSpaces}`)
     }
 }
+const handleCopy = () => {
+    navigator.clipboard.writeText(newt);
+    if(text === ""){
+         props.showAlert("Warning" , "Input is Empty")
+    } else {
+    props.showAlert("success", "Text copied to clipboard successfully!");
+    }
+}
 
 
 
     return (
         < >
+            <div style={{ display :"flex" }}>
+                <div  style={{ 
+                            width: "75%",
+                          // minWidth: "1000px",
+                            
+                        }}>
+                    <div className={`form-floating   bg-${props.first}`}  data-bs-theme={`${props.first}`}
+                            style={{ 
+                                border: `10px solid ${props.first === "light" ? "white" : "black"}`,
+                                
+                            }}>
+                        <textarea
+                            className="form-control"
+                            placeholder="Write something"
+                            value={text}
+                            onChange={relo}
+                            style={ {height: "200px"}}
+                        ></textarea>
 
-            <div className={`form-floating   bg-${props.first}`}  data-bs-theme={`${props.first}`}
-           style={{ 
-                        border: `10px solid ${props.first === "light" ? "white" : "black"}`
-                          
-                    }}>
-                <textarea
-                    className="form-control"
-                    placeholder="Write something"
-                    value={text}
-                    onChange={relo}
-                    style={ {
-                                //minHeight: '50px',
-                                height: "200px"
-                             }
-                    }
-                ></textarea>
+                        <label>Write Text</label>
+                    </div>
 
-                <label>Write Text</label>
-            </div>
-
-            <div className={`form-floating   bg-${props.first}`}  data-bs-theme={`${props.first}`}
-            style={{ 
-                        border: `10px solid ${props.first === "light" ? "white" : "black"}`
-                          
-                    }}>
-                <textarea
-                    className="form-control"
-                    placeholder="Result"
-                    value={newt}
-                    readOnly
-                ></textarea>
-
-                <label>Result</label>
-            </div>
-
-            <div className='d-flex flex-wrap gap-2  p-3'
-            style={{ 
-                        backgroundColor: `${props.first === "light" ? "white" : "#212529"}`,
-                        border: `10px solid ${props.first === "light" ? "white" : "black"}`,
-                        color: `${props.first === "dark" ? "white" : "black"}`,
-                  
-                          
-                    }}>
-                <p className="myText px-4">Words: {word}</p>
-                <p className="myText px-4">Characters: {char}</p>
-                <p className="myText px-4">Total Space: {spac}</p>
-                <p className="myText px-4">Total Lines: {entr}</p>
-                
-            </div>
-            <div className="d-flex flex-wrap " 
-            style={{ 
-                        backgroundColor: `${props.first === "light" ? "white" : "#212529"}`,
-                        border: `10px solid ${props.first === "light" ? "white" : "black"}`,
-                        color: `${props.first === "dark" ? "white" : "black"}`,
-                        
-                          
-                    }}>
-                {p.map(function(elem , idx){   
-                        return (
-                            <div className=' w-25px mx-5'>  
-                            <p className="myText px-4" style={ {
-                                width : "220px" }
-                            } id={idx}>Total {elem[1]} : {(elem.slice(2,(elem.length-1)))} {`( ${per[idx]} % )`}</p>
+                    <div className={`form-floating   bg-${props.first}`}  data-bs-theme={`${props.first}`}
+                        style={{ 
+                            border: `10px solid ${props.first === "light" ? "white" : "black"}`,
+                        }}>
+                            <div  className="border border-2  p-2 text-break" 
+                                style={{ 
+                                    width: '100%', 
+                                    height: 'auto',          
+                                    minHeight: '50px',  
+                                    whiteSpace: 'pre-wrap',    
+                                    backgroundColor: `${props.first === "light" ? "white" : "#212529"}`,
+                                    border: `10px solid ${props.first === "dark" ? "white" : "black"}`,
+                                    color: `${props.first === "dark" ? "white" : "black"}`
+                                    }}>
+                                    <p className="myText"> {textp === 1 ? text : newt}</p>
                             </div>
-                                )
-                    })
-                } 
-            </div>
-            <div 
-            style={{ 
-                    height: '150px',
-                    display: 'flex',
-                    alignItems: "center",
-                    backgroundColor: `${props.first === "light" ? "white" : "black"}`,
-                    border: `10px solid ${props.first === "light" ? "white" : "black"}`,
-                    }}>
-            <button
-                className="btn btn-primary me-2"
-                type="button"
-                onClick={upper}
-            >
-                To Upper
-            </button>
 
-            <button
-                className="btn btn-primary me-2"
-                type="button"
-                onClick={low}
-            >
-                To Lower
-            </button>
-             <button
-                className="btn btn-primary me-2"
-                type="button"
-                onClick={firstletter}
-            >
-                Only First Letter Capital
-            </button>
+                    </div>
 
-             <button
-                className="btn btn-primary me-2"
-                type="button"
-                onClick={all}
-            >
-                Clera All
-            </button>
-            <button
-                className="btn btn-primary me-2"
-                type="button"
-                onClick={deletspace}
-            >
-                Delet Spaces
-            </button>
-            </div>
-            
-            <div  className="border border-2  p-2 text-break" 
+                    <div className='d-flex flex-wrap gap-2  p-3'
                     style={{ 
-                        width: '100%', 
-                        height: 'auto',          
-                        minHeight: '50px',     
-                        backgroundColor: `${props.first === "light" ? "white" : "#212529"}`,
-                        border: `10px solid ${props.first === "dark" ? "white" : "black"}`,
-                         color: `${props.first === "dark" ? "white" : "black"}`
-                     
-                    }}>
-                <p className="myText"> {textp === 1 ? text : newt}</p>
-            </div>
+                                backgroundColor: `${props.first === "light" ? "white" : "#212529"}`,
+                                border: `10px solid ${props.first === "light" ? "white" : "black"}`,
+                                color: `${props.first === "dark" ? "white" : "black"}`,      
+                            }}>
+                        <p className="myText px-4">Words: {word}</p>
+                        <p className="myText px-4">Characters: {char}</p>
+                        <p className="myText px-4">Total Space: {spac}</p>
+                        <p className="myText px-4">Total Lines: {entr}</p>
+                        
+                    </div>
+                    <div className="d-flex flex-wrap " 
+                    style={{ 
+                                backgroundColor: `${props.first === "light" ? "white" : "#212529"}`,
+                                border: `10px solid ${props.first === "light" ? "white" : "black"}`,
+                                color: `${props.first === "dark" ? "white" : "black"}`,      
+                            }}>
+                        {p.map(function(elem , idx){   
+                                return (
+                                    <div className=' w-25px '>  
+                                    <p className="myText px-4 p-1" style={ {
+                                        width : "220px" }
+                                    } id={idx}>Total {elem[1]} : {(elem.slice(2,(elem.length-1)))} {`( ${per[idx]} % )`}</p>
+                                    </div>
+                                        )
+                            })
+                        } 
+                    </div>
+                </div>
+            
+                <div 
+                style={{ 
+                        width: "25%",
+                        minWidth: "250px",
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        height: "200px",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        backgroundColor: `${props.first === "light" ? "white" : "black"}`,
+                        //border: `10px solid ${props.first === "light" ? "white" : "black"}`,
+                        }}>
+                <button
+                    className="btn btn-primary me-2 "
+                    style={{ width: '110px' }}
+                    type="button"
+                    onClick={upper}
+                >
+                    To Upper
+                </button>
 
+                <button
+                    className="btn btn-primary me-2  "
+                    style={{ width: '110px' }}
+                    type="button"
+                    onClick={low}
+                >
+                    To Lower
+                </button>
+                <button
+                    className="btn btn-primary me-2  "
+                    style={{ width: '110px' }}
+                    type="button"
+                    onClick={firstletter}
+                >
+                     First Capital
+                </button>
 
-        </>
-    )
-    
+                <button
+                    className="btn btn-primary me-2  "
+                    style={{ width: '110px' }}
+                    type="button"
+                    onClick={all}
+                >
+                    Clera All
+                </button>
+                <button
+                    className="btn btn-primary me-2  "
+                    style={{ width: '110px' }}
+                    type="button"
+                    onClick={deletspace}
+                >
+                    Delet Space
+                </button>
+                <button
+                    className="btn btn-primary me-2  "
+                    style={{ width: '110px' }}
+                    type="button"
+                    onClick={handleCopy}
+                >
+                    Copy 
+                </button>
+                </div>
+        </div>            
+
+    </>
+)
 }
 
 export default Text;
