@@ -9,27 +9,45 @@ function Text(props) {
     // let [words, setwords] = useState([''])
 
     const upper = () => {
+        const alertcap =() => {
+             if (text === text.toUpperCase()) {
+                props.showAlert("Warinig" , "The word is already capitalized.")
+            } else {
+                props.showAlert("success" , "All Letters are Capital Now")
+            }
+        }
         if (text !== "") {
 
             setnewt(text.toUpperCase())
             settextp(2)
+            alertcap()
 
         }else if (text === ""){
             setnewt(newt.toUpperCase())
             settextp(2)
+            props.showAlert("Warinig" , "Input is Empty")
 
         }
     }
 
     const low = () => {
+        const alertlow =() => {
+             if (text === text.toLowerCase()) {
+                props.showAlert("Warinig" , "The word is already capitalized.")
+            } else {
+                props.showAlert("success" , "All Letters are Capital Now")
+            }
+        }
         if (text !== "") {
-            // setnewt(text.toLowerCase())
             setnewt(newt.toLowerCase())
-           settextp(2)
+            settextp(2)
+            alertlow()
 
         }else if (text === ""){
             setnewt(newt.toLowerCase())
             settextp(2)
+            props.showAlert("Warinig" , "Input is Empty")
+            //alertlow()
         }
     }
      const firstletter = () => {
@@ -104,15 +122,17 @@ const relo = (event) => {
 const deletspace = () => {
     let newText = text.split(/[ ]+/);
     let spcount = text.split(/[ ]+/).length-1;
+    let calculatedExtraSpaces = spac - spcount; 
     settotalsp(spac - spcount) ;
     
 
     settext(newText.join(" "));
     setnewt(newText.join(" "));
-    if (totalSp === 0) {
+    console.log(totalSp)
+    if (calculatedExtraSpaces === 0) {
         props.showAlert("Warning" , "There is no Extra Space")
     } else {
-        props.showAlert("success" , `Delet Extra spaces: ${totalSp}`)
+        props.showAlert("success" , `Delet Extra spaces: ${calculatedExtraSpaces}`)
     }
 }
 

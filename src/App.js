@@ -29,11 +29,11 @@ function App() {
    if (first === "light") {
     setfirst("dark")
     document.body.style.backgroundColor = "black"
-    showAlert("success" , "Dark Mode inable")
+    showAlert("success" , "Dark Mode enable")
    } else {
     setfirst("light")
     document.body.style.backgroundColor = "white"
-    showAlert("success" , "Light Mode inable")
+    showAlert("success" , "Light Mode enable")
    }
   }
   return (
