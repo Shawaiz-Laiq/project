@@ -3,10 +3,11 @@ import PropTypes from 'prop-types'
 
 
 function Nav(props) {
+    
     return (
          
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
+    <nav className= {`navbar navbar-expand-lg bg-${props.first}`}  data-bs-theme={`${props.first}`}>
+        <div className="container-fluid " >
             <a className="navbar-brand" href="/">{props.title}</a>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
@@ -34,13 +35,15 @@ function Nav(props) {
                         <a className="nav-link disabled" aria-disabled="true" href='/'>Disabled</a>
                         </li>
                 </ul>
-                <form className="d-flex" role="search">
-                    <button className="btn btn-outline-success " type="submit" >Search</button>
-                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                </form>
+            </div>
+                
+            <div className="form-check form-switch">
+                <input className="form-check-input" type="checkbox" role="switch" id="switchCheckDefault" onClick={props.toggleMode}/>
+                <label className={`form-check-label text-${props.first === "dark" ? "light" : "dark"}`} htmlFor="switchCheckDefault">dark Mode</label>
             </div>
         </div>
     </nav>
+
 
 
     )

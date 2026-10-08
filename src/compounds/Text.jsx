@@ -1,10 +1,11 @@
 import { useState } from 'react'
 
-function Text() {
+function Text(props) {
 
     let [text, settext] = useState("")
     let [newt, setnewt] = useState('')
     const [textp, settextp] = useState(1)
+    let [totalSp, settotalsp] = useState(0)
     // let [words, setwords] = useState([''])
 
     const upper = () => {
@@ -89,7 +90,6 @@ if (text !== ""  ) {
     let first = sorted[i].slice(2, sorted[i].length-1)
 
     per.push(Math.round( (100 / char * first) * 100) / 100)
-    console.log(i)
 
     }
 }
@@ -101,13 +101,31 @@ const relo = (event) => {
     setnewt("") 
     settextp(1) 
 }
+const deletspace = () => {
+    let newText = text.split(/[ ]+/);
+    let spcount = text.split(/[ ]+/).length-1;
+    settotalsp(spac - spcount) ;
+    
+
+    settext(newText.join(" "));
+    setnewt(newText.join(" "));
+    if (totalSp === 0) {
+        props.showAlert("Warning" , "There is no Extra Space")
+    } else {
+        props.showAlert("success" , `Delet Extra spaces: ${totalSp}`)
+    }
+}
 
 
 
     return (
-        <>
+        < >
 
-            <div className="form-floating mb-3">
+            <div className={`form-floating   bg-${props.first}`}  data-bs-theme={`${props.first}`}
+           style={{ 
+                        border: `10px solid ${props.first === "light" ? "white" : "black"}`
+                          
+                    }}>
                 <textarea
                     className="form-control"
                     placeholder="Write something"
@@ -123,7 +141,11 @@ const relo = (event) => {
                 <label>Write Text</label>
             </div>
 
-            <div className="form-floating mb-3">
+            <div className={`form-floating   bg-${props.first}`}  data-bs-theme={`${props.first}`}
+            style={{ 
+                        border: `10px solid ${props.first === "light" ? "white" : "black"}`
+                          
+                    }}>
                 <textarea
                     className="form-control"
                     placeholder="Result"
@@ -134,13 +156,28 @@ const relo = (event) => {
                 <label>Result</label>
             </div>
 
-            <div className='d-flex flex-wrap gap-2 border p-3'>
+            <div className='d-flex flex-wrap gap-2  p-3'
+            style={{ 
+                        backgroundColor: `${props.first === "light" ? "white" : "#212529"}`,
+                        border: `10px solid ${props.first === "light" ? "white" : "black"}`,
+                        color: `${props.first === "dark" ? "white" : "black"}`,
+                  
+                          
+                    }}>
                 <p className="myText px-4">Words: {word}</p>
                 <p className="myText px-4">Characters: {char}</p>
                 <p className="myText px-4">Total Space: {spac}</p>
                 <p className="myText px-4">Total Lines: {entr}</p>
+                
             </div>
-            <div className="d-flex flex-wrap">
+            <div className="d-flex flex-wrap " 
+            style={{ 
+                        backgroundColor: `${props.first === "light" ? "white" : "#212529"}`,
+                        border: `10px solid ${props.first === "light" ? "white" : "black"}`,
+                        color: `${props.first === "dark" ? "white" : "black"}`,
+                        
+                          
+                    }}>
                 {p.map(function(elem , idx){   
                         return (
                             <div className=' w-25px mx-5'>  
@@ -152,6 +189,14 @@ const relo = (event) => {
                     })
                 } 
             </div>
+            <div 
+            style={{ 
+                    height: '150px',
+                    display: 'flex',
+                    alignItems: "center",
+                    backgroundColor: `${props.first === "light" ? "white" : "black"}`,
+                    border: `10px solid ${props.first === "light" ? "white" : "black"}`,
+                    }}>
             <button
                 className="btn btn-primary me-2"
                 type="button"
@@ -182,12 +227,24 @@ const relo = (event) => {
             >
                 Clera All
             </button>
+            <button
+                className="btn btn-primary me-2"
+                type="button"
+                onClick={deletspace}
+            >
+                Delet Spaces
+            </button>
+            </div>
             
-            <div  className="border border-2 border-dark rounded p-2 text-break" 
+            <div  className="border border-2  p-2 text-break" 
                     style={{ 
                         width: '100%', 
                         height: 'auto',          
                         minHeight: '50px',     
+                        backgroundColor: `${props.first === "light" ? "white" : "#212529"}`,
+                        border: `10px solid ${props.first === "dark" ? "white" : "black"}`,
+                         color: `${props.first === "dark" ? "white" : "black"}`
+                     
                     }}>
                 <p className="myText"> {textp === 1 ? text : newt}</p>
             </div>
