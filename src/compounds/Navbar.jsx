@@ -16,10 +16,10 @@ function Nav(props) {
                     <li className="nav-item">
                         <Link className="nav-link active" aria-current="page" to="/Updates">{props.about}</Link>
                     </li>
-                    {/* <li className="nav-item">
-                        <a className="nav-link" href="/">Link</a>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/history">History</Link>
                     </li>
-                    <li className="nav-item dropdown">
+                    {/*<li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Dropdown
                         </a>

@@ -10,7 +10,8 @@ function UpdatesInforamtion(props) {
                     <button 
                     style={{
                     color: `${props.first === "dark" ? "white" : "black"}`,
-                    backgroundColor: `${props.first === "light" ? "white" : "#343a40"}`,}}
+                    backgroundColor: `${props.first === "light" ? "white" : "#343a40"}`,
+                    border: "0.1px solid black"}}
                     className="accordion-button collapsed" 
                     type="button" 
                     data-bs-toggle="collapse" 
@@ -23,7 +24,8 @@ function UpdatesInforamtion(props) {
                 </h2>
                 <div id={`flush-collapse${props.number}`} className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                     <div className="accordion-body" style={{
-                     backgroundColor: `${props.first === "light" ? "white" : "black"}`}}>
+                     backgroundColor: `${props.first === "light" ? "gainsboro" : "black"}`,
+                     border :`1px solid ${props.first === "dark" ? "white" : "black"}`}}>
                         <div>{props.information1}</div>
                         <div>{props.information2}</div>
                         <div>{props.information3}</div>

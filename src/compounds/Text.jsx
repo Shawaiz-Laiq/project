@@ -63,7 +63,7 @@ function Text(props) {
     let word = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
     let char = text.replace(/\s/g, "").length;
     let spac = text.split(/\s/).length - 1;
-    let entr = text.split(/\n+/).length - 1;
+    let entr = text.trim() === "" ? 0 : text.split(/\n+/).length ;
 
     function countCharacters(text) {
         let o =  text.trim().toUpperCase().replace(/\s/g, text.trim() === "" ? 0 : "" );
@@ -120,7 +120,18 @@ function Text(props) {
         props.showAlert("success", "Text copied to clipboard successfully!");
         }
     }
+   const history = () => {
+    if (text.trim() !== "") {
+        props.hist(newt === "" ? text : newt); 
+        settext("");
+        props.showAlert("success", "Saved to History!");
+    } else {
+        props.showAlert("Warning", "Cannot save empty text!");
+    }
+}
 
+  
+ 
     return (
         < >
             <div style={{ display :"flex" }}>
@@ -235,6 +246,13 @@ function Text(props) {
                         type="button"
                         onClick={handleCopy}>
                         Copy 
+                    </button>
+                    <button
+                        className="btn btn-primary me-2  "
+                        style={{ width: '230px' }}
+                        type="button"
+                        onClick={history }>
+                        Save To History 
                     </button>
                 </div>
             </div>            
