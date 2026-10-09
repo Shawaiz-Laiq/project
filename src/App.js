@@ -3,7 +3,10 @@ import './App.css';
 import Nav from './compounds/Navbar';
 import Text from './compounds/Text';
 import Alert from './compounds/Alert'
+import Updates from './compounds/Updates'
 import { useState, useRef } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+ 
 
 function App() {
   const [first, setfirst] = useState("light");
@@ -39,9 +42,17 @@ function App() {
   return (
 
     <>
-    <Nav title="True" first={first} toggleMode={toggleMode} />
+    <Router>
+    <Nav title="Words Counter" about="Updates" first={first} toggleMode={toggleMode} />
     <Alert alerts={alerts} />
-    <Text first={first} toggleMode={toggleMode} showAlert={showAlert} />
+      <Routes>
+        <Route exact path="Updates" element={<Updates first={first} />} />
+        
+         <Route exact path="/" element={<Text first={first} toggleMode={toggleMode} showAlert={showAlert} />} />
+      </Routes>
+    </Router>
+  
+    
     </>
   )
 }
