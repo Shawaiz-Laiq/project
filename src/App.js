@@ -13,6 +13,7 @@ function App() {
   const [first, setfirst] = useState("light");
   const [alerts, setAlerts] = useState(null)
   const [history, sethistory] = useState([])
+   const [count, setcount] = useState(0)
 
   const timerRef = useRef(null);
 
@@ -32,7 +33,6 @@ function App() {
        };
 
        const updatedHistory = [...prevHistory, newHistoryItem];
-       console.log("Updated History Array:", updatedHistory); 
        return updatedHistory;
    });
 }
@@ -62,15 +62,20 @@ function App() {
     showAlert("success" , "Light Mode enable")
    }
   }
+  const historycount =(value) =>{
+    setcount(value + count)
+  } 
+ 
+
   return (
 
     <>
     <Router>
-    <Nav title="Words Counter" about="Updates" first={first} toggleMode={toggleMode} />
+    <Nav title="Words Counter" about="Updates" first={first} toggleMode={toggleMode} hiscount={count} sethiscout={setcount} />
     <Alert alerts={alerts} />
       <Routes>
         <Route exact path="Updates" element={<Updates first={first} />} />       
-        <Route exact path="/" element={<Text first={first} toggleMode={toggleMode} showAlert={showAlert} hist={hist} />} />
+        <Route exact path="/" element={<Text first={first} toggleMode={toggleMode} showAlert={showAlert} hist={hist} hiscount={historycount} />} />
          <Route exact path="history" element={<History history={history} first={first} />} />       
       </Routes>
     </Router>

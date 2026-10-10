@@ -29,7 +29,7 @@ function UpdatesInforamtion(props) {
                         <div>{props.information1}</div>
                         <div>{props.information2}</div>
                         <div>{props.information3}</div>
-                        <div>{props.information4}</div>
+                        <center><div>{props.information4}</div></center>
                     </div>
                 </div>
             </div>

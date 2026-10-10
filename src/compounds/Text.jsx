@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState  } from 'react'
+
 
 function Text(props) {
 
@@ -112,23 +113,48 @@ function Text(props) {
             props.showAlert("success" , `Delet Extra spaces: ${calculatedExtraSpaces}`);
         }
     }
+
     const handleCopy = () => {
-        navigator.clipboard.writeText(newt);
-        if(text === ""){
-            props.showAlert("Warning" , "Input is Empty");
+        const textToCopy = newt === "" ? text: newt;
+        if (!textToCopy || textToCopy.trim() === "") {
+             props.showAlert("Warning", "Input is Empty");
+             return;
         } else {
-        props.showAlert("success", "Text copied to clipboard successfully!");
+            navigator.clipboard.writeText(textToCopy);
+            props.showAlert("success", "Text copied to clipboard successfully!");
+            console.log(textToCopy)
+        }
+    };
+
+    const paste = async () => {
+    try {
+        const textFromClipboard = await navigator.clipboard.readText();
+        
+        if (!textFromClipboard || textFromClipboard.trim() === "") {
+            props.showAlert("Warning", "Clipboard is Empty");
+            return;
+        }
+        settext(prevText => prevText + textFromClipboard);
+        props.showAlert("success", "Text pasted successfully!");
+        console.log("Pasted Text:", textFromClipboard);       
+        } catch (err) {
+            props.showAlert("danger", "Browser blocked clipboard reading.");
+        }
+    };
+
+    let historycount = 0
+
+    const history = () => {
+        if (text.trim() !== "") {
+            props.hist(newt === "" ? text : newt); 
+            settext("");
+            historycount++
+            props.hiscount(historycount)
+            props.showAlert("success", "Saved to History!");
+        } else {
+            props.showAlert("Warning", "Cannot save empty text!");
         }
     }
-   const history = () => {
-    if (text.trim() !== "") {
-        props.hist(newt === "" ? text : newt); 
-        settext("");
-        props.showAlert("success", "Saved to History!");
-    } else {
-        props.showAlert("Warning", "Cannot save empty text!");
-    }
-}
 
   
  
@@ -199,10 +225,11 @@ function Text(props) {
                         alignItems: "center",
                         justifyContent: "center",
                         backgroundColor: `${props.first === "light" ? "white" : "black"}`,
+                        marginTop: "20px"
                         }}>
                     <button
                         className="btn btn-primary me-2 "
-                        style={{ width: '110px' }}
+                        style={{ width: '110px', margin: "10px" }}
                         type="button"
                         onClick={upper}>
                         To Upper
@@ -210,7 +237,7 @@ function Text(props) {
 
                     <button
                         className="btn btn-primary me-2  "
-                        style={{ width: '110px' }}
+                        style={{ width: '110px', margin: "10px" }}
                         type="button"
                         onClick={low}>
                         To Lower
@@ -218,7 +245,7 @@ function Text(props) {
 
                     <button
                         className="btn btn-primary me-2  "
-                        style={{ width: '110px' }}
+                        style={{ width: '110px', margin: "10px" }}
                         type="button"
                         onClick={firstletter}>
                         First Capital
@@ -226,7 +253,7 @@ function Text(props) {
 
                     <button
                         className="btn btn-primary me-2  "
-                        style={{ width: '110px' }}
+                        style={{ width: '110px', margin: "10px" }}
                         type="button"
                         onClick={all}>
                         Clera All
@@ -234,7 +261,7 @@ function Text(props) {
 
                     <button
                         className="btn btn-primary me-2  "
-                        style={{ width: '110px' }}
+                        style={{ width: '110px', margin: "10px" }}
                         type="button"
                         onClick={deletspace}>
                         Delet Space
@@ -242,17 +269,24 @@ function Text(props) {
 
                     <button
                         className="btn btn-primary me-2  "
-                        style={{ width: '110px' }}
+                        style={{ width: '110px', margin: "10px" }}
                         type="button"
                         onClick={handleCopy}>
                         Copy 
                     </button>
                     <button
                         className="btn btn-primary me-2  "
-                        style={{ width: '230px' }}
+                        style={{ width: '110px', margin: "10px" }}
                         type="button"
                         onClick={history }>
-                        Save To History 
+                        Save  
+                    </button>
+                     <button
+                        className="btn btn-primary me-2  "
+                        style={{ width: '110px', margin: "10px" }}
+                        type="button"
+                        onClick={paste}>
+                        Paste 
                     </button>
                 </div>
             </div>            

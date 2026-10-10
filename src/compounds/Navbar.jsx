@@ -2,7 +2,9 @@
 import { Link } from 'react-router-dom';
 
 function Nav(props) {
-    
+    const clicked =()=>{
+        console.log(props.sethiscout(0))
+    }
     return (
          
     <nav className= {`navbar navbar-expand-lg bg-${props.first}`}  data-bs-theme={`${props.first}`}>
@@ -17,7 +19,14 @@ function Nav(props) {
                         <Link className="nav-link active" aria-current="page" to="/Updates">{props.about}</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/history">History</Link>
+                        <Link className="nav-link position-relative" to="/history" onClick={clicked}>
+                            History
+                            {props.hiscount === 0 ? " " : <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                style={{ fontSize: '0.65rem', padding: '0.25em 0.45em' }}>
+                                {props.hiscount}
+                            </span> }
+                            
+                        </Link>
                     </li>
                     {/*<li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
