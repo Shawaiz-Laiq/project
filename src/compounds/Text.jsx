@@ -256,7 +256,7 @@ function Text(props) {
                         style={{ width: '110px', margin: "10px" }}
                         type="button"
                         onClick={all}>
-                        Clera All
+                        Clear All
                     </button>
 
                     <button
@@ -264,7 +264,7 @@ function Text(props) {
                         style={{ width: '110px', margin: "10px" }}
                         type="button"
                         onClick={deletspace}>
-                        Delet Space
+                        Delete Space
                     </button>
 
                     <button
