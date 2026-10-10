@@ -63,8 +63,8 @@ function  Updates(props) {
                     title="Seventh update 0.0.7"
                     information1="Add Alert Height"
                     information2="Add History Height"
-                    information3="This Was The Last Update on 10-Oct-2025 at 2:00pm Best Of Luck"
-                    information4="Shawaizlaiq@gmai.com"
+                    information3="This Was The Last Update on 10-Oct-2026 at 2:00pm Best Of Luck"
+                    information4="Shawaizlaiq20@gmai.com"
                     /> 
                 </div>
             </div>    
