@@ -3,7 +3,10 @@ import UpdatesInforamtion from "./Updatesinformation";
 function  Updates(props) {
     return(        
         <>
-            <div className="container my-4">       
+            <div className="container my-4" style={{ maxHeight: "70vh",
+              overflowY: "auto",        
+              scrollbarWidth: "none", 
+              msOverflowStyle: "none" }}   >    
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                     <UpdatesInforamtion first={props.first}  
                     number="One"
@@ -53,6 +56,15 @@ function  Updates(props) {
                     information2="Copy Button Now Working"
                     information3="History Notification"
                     information4="Date 10-Oct-2026 "
+                    /> 
+                    <UpdatesInforamtion first={props.first}  
+                    number="Seventh"
+                    state="false"
+                    title="Seventh update 0.0.7"
+                    information1="Add Alert Height"
+                    information2="Add History Height"
+                    information3="This Was The Last on 10-Oct-2025 at 2:00pm Best Of Luck mail shawaizlaiq20@gmail.com "
+                    information4="Thanks "
                     /> 
                 </div>
             </div>    

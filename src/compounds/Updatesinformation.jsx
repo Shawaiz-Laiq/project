@@ -11,7 +11,7 @@ function UpdatesInforamtion(props) {
                     style={{
                     color: `${props.first === "dark" ? "white" : "black"}`,
                     backgroundColor: `${props.first === "light" ? "white" : "#343a40"}`,
-                    border: "0.1px solid black"}}
+                    border: "0.1px solid black",}}
                     className="accordion-button collapsed" 
                     type="button" 
                     data-bs-toggle="collapse" 

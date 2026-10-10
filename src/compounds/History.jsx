@@ -16,7 +16,11 @@ function History(props) {
             backgroundColor: `${props.first === "light" ? "white" : "black"}`,           
             }}>
               <h5>{item.title}</h5>
-              <p><strong>Information:</strong> {item.information}</p>
+              <p style={{ maxHeight: "200px",
+              overflowY: "auto",        
+              scrollbarWidth: "none", 
+              msOverflowStyle: "none" }}>
+              <strong>Information:</strong> {item.information}</p>
             </li>
           );
         })}
